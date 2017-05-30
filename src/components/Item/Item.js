@@ -64,7 +64,7 @@ render() {
     <div className="small-12 large-11 small-centered columns">
 
       <div className="small-12 large-5 columns auct-l-container">
-        <img src="http://placehold.it/600x600" alt="" />
+        <img src={this.state.item.avatarURL} alt="PicItem" />
       </div>
 
       <div className="small-12 large-7 columns auct-r-container">

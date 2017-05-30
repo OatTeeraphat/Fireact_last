@@ -18,7 +18,6 @@ class Clock extends Component {
    if(this.state.timetoauct < 1) { 
        this.intervalId && clearInterval(this.intervalId)
        this.intervalId = false
-       alert("You are the winner of the auction. The item will appear in the cart within few seconds.")
       firebase.database().ref().child('items').child(this.props.dbkey).child('History')
         .on('value', dataSnapshot => {
         let test = dataSnapshot.numChildren()
