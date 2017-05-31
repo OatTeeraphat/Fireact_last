@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 import { Route, BrowserRouter, Redirect, Switch } from 'react-router-dom'
 import Login from './User/Login'
 import Register from './User/Register'
-import MyCart from './MyCart'
-import Orderlist from './Orderlist'
+import MyCart from './User/MyCart'
+import Orderlist from './User/Orderlist'
 import Filter from './Filter'
 import Header from './wrapper/Header'
 import Footer from './wrapper/Footer'
 import Categorylist from './protected/categories/Categorylist'
 import Configitem from './protected/Configitem'
 import Item from './Item/Item'
+import FilterItem from './Item/FilterItem'
 import { firebaseAuth } from '../config/constants'
 
 function PrivateRoute ({component: Component, authed, ...rest}) {
@@ -76,7 +77,7 @@ export default class App extends Component {
   render() {
     return this.state.loading === true ? 
       <div className="loader-img">
-        <img src="http://localhost:3000/img/preloader2.gif" alt="Loader Icon" />
+        <img src="http://128.199.194.193/img/preloader2.gif" alt="Loader Icon" />
       </div> 
 
     : (

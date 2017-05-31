@@ -21,6 +21,7 @@ class Categories extends Component {
     this.state = {
       categories: [],
       fiiterID: '',
+      isActive: null,
     };
     this.dbItems = firebase.database().ref().child('category');
   }
@@ -49,10 +50,12 @@ class Categories extends Component {
   //  });
   Triggered = (e) =>{
     this.setState({filterID: e})
+    this.setState({ isActive: e })
   }
 
   Null = () => {
     this.setState({filterID: null})
+    this.setState({ isActive: null })
   }
 
 
@@ -64,7 +67,7 @@ class Categories extends Component {
         <div className="row">
           <div className="home-cat fuck">
             <ul>
-              <li className='catlist active' >
+              <li className={"catlist " + (this.state.isActive === null  && 'active')} >
                 <Link to='/' onClick={this.Null} >
                     <i className="fa fa-clock-o"></i>
                     <p className="show-for-large">Last Time</p>
@@ -72,7 +75,7 @@ class Categories extends Component {
               </li>
               {this.state.categories.map((category) => {
                 return ( 
-                  <li key={ category['.key'] } className='catlist' >
+                  <li key={ category['.key'] } className={"catlist " + (this.state.isActive === category['.key']  && 'active')} >
                     <Category dbkey={category['.key']} {...category} Triggered={this.Triggered} />
                   </li>
                 );
