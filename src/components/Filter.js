@@ -45,9 +45,6 @@ class Categories extends Component {
     this.dbItems.off();
   }
 
-  // this.setState({filterID: e}, function () {
-  //   alert(this.state.filterID);
-  //  });
   Triggered = (e) =>{
     this.setState({filterID: e})
     this.setState({ isActive: e })

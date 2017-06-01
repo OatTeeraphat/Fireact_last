@@ -10,7 +10,7 @@ import Footer from './wrapper/Footer'
 import Categorylist from './protected/categories/Categorylist'
 import Configitem from './protected/Configitem'
 import Item from './Item/Item'
-import FilterItem from './Item/FilterItem'
+//import FilterItem from './Item/FilterItem'
 import { firebaseAuth } from '../config/constants'
 
 function PrivateRoute ({component: Component, authed, ...rest}) {
@@ -77,7 +77,7 @@ export default class App extends Component {
   render() {
     return this.state.loading === true ? 
       <div className="loader-img">
-        <img src="http://128.199.194.193/img/preloader2.gif" alt="Loader Icon" />
+        <img src="http://localhost:3000/img/preloader2.gif" alt="Loader Icon" />
       </div> 
 
     : (

@@ -5,7 +5,6 @@ import * as firebase from 'firebase'
 import moment from 'moment'
 moment().format();
 
-// ToDo = Change Item to PureComponent
 class Item extends React.Component {
 constructor () {
     super()
@@ -44,10 +43,10 @@ Auction = (e) => {
     auctround: this.state.item.auctround,
     ReservePrize:parseInt(this.state.item.prize, 10) + 10 ,
     })
-    if(this.state.newprize > this.state.item.ReserveBid){
+    if(parseInt(this.state.newprize, 10) > parseInt(this.state.item.ReserveBid, 10)){
     firebase.database().ref().child('items').child(this.props.match.params.itemId).update({
     prize: parseInt(this.state.item.prize, 10) + 10 ,
-    timetoauct: 25,
+    timetoauct: 60,
     auctround: this.state.item.auctround + 1,
     ReserveBid: this.state.newprize,
     ReserveUser: firebase.auth().currentUser.email,
