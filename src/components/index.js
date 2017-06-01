@@ -77,7 +77,7 @@ export default class App extends Component {
   render() {
     return this.state.loading === true ? 
       <div className="loader-img">
-        <img src="http://localhost:3000/img/preloader2.gif" alt="Loader Icon" />
+        <img src="http://128.199.194.193/img/preloader2.gif" alt="Loader Icon" />
       </div> 
 
     : (
