@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import firebase from 'firebase'
 import {Link} from 'react-router-dom'
 import Clock from './Clock.js'
+//import RealClock from './Clocking.js'
+//import fetch from 'isomorphic-fetch'
 
 
-class UpdateableItem extends React.PureComponent {
+class UpdateableItem extends React.Component {
 
   state ={
     icon:'',
@@ -22,7 +24,7 @@ class UpdateableItem extends React.PureComponent {
   }
 
   render(){
-    return (
+    return this.props.status === 1 && (
       <div className="small-6 medium-4 large-3 columns post-box">
         <Link to={'/item/'+this.props.dbkey } target="_blank">
           <div className="post-box-top">
@@ -41,7 +43,7 @@ class UpdateableItem extends React.PureComponent {
           </div>
         </Link>
       </div>
-    )
+    ) 
   }
 }
 
@@ -50,10 +52,12 @@ class Home extends Component {
     super();
     this.state = {
       items: [],
-      filterKey: null
-    };
+      filterKey: null,
+      APItime: [],
+    }
     this.dbItems = firebase.database().ref().child('items')
   }
+
 
   componentWillReceiveProps(newProps) {
     this.setState({ filterKey: newProps.filterKey })

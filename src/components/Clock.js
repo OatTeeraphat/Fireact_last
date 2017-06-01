@@ -55,7 +55,7 @@ class Clock extends Component {
   }
   
   componentDidMount() {
-      let timeRef =firebase.database().ref().child('items').child(this.props.dbkey).child('timetoauct')
+    let timeRef =firebase.database().ref().child('items').child(this.props.dbkey).child('timetoauct')
     let roundRef =firebase.database().ref().child('items').child(this.props.dbkey).child('auctround')
         timeRef.on("value", snapshot => {
         let gettime = snapshot.val();
@@ -65,7 +65,7 @@ class Clock extends Component {
         let getround = snapshot.val();
         this.setState({auctround:getround })
     })
-    this.intervalId = setInterval(this.timer, 1000);
+    this.intervalId = setInterval(this.timer, 1500);
   }
 
   componentWillUnmount () {

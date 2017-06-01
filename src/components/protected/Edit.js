@@ -29,6 +29,8 @@ class Edit extends Component {
       isUploading: false,
       progress: 0,
       avatarURL: '',
+      reserveTime:''
+
     }
   }
 
@@ -75,6 +77,7 @@ class Edit extends Component {
         ReserveBid: 0,
         ReserveUser:'',
         avatarURL: this.state.avatarURL,
+        reserveTime: this.state.reserveTime
       })
       this.setState({
         newitemtext: '',
@@ -112,7 +115,7 @@ class Edit extends Component {
   }
 
   handleUploadStart = () => this.setState({isUploading: true, progress: 0})
-  handleProgress = (progress) => this.setState({progress});
+  handleProgress = (progress) => this.setState({progress})
   handleUploadError = (error) => {
       this.setState({isUploading: false})
       console.error(error)
@@ -120,9 +123,12 @@ class Edit extends Component {
   handleUploadSuccess = (filename) => {
       this.setState({avatar: filename, progress: 100, isUploading: false});
       firebase.storage().ref('images').child(filename).getDownloadURL().then(url => this.setState({avatarURL: url}))
-  };
-  
+  }
+
+ 
   render() {
+
+
     return (
         <div className="small-12 large-6 columns">
           <div className="small-12 columns profile-main">
@@ -155,10 +161,10 @@ class Edit extends Component {
                   <span className="form-error" data-form-error-for="exampleNumberInput">Amount is required.</span>
                 </div>
                 <div className="small-12 medium-6 columns">
-                  <label>Reserve Price
+                  <label>Reserve time
                     <div className="input-group">
                       <span className="input-group-label">$</span>
-                      <input className="input-group-field" id="exampleNumberInput" type="number" required pattern="number"/>
+                      <input className="input-group-field" id="exampleNumberInput" type="number" required pattern="number" onChange={ this.onNewItemChange } value={ this.state.reserveTime } name="reserveTime"/>
                     </div>
                   </label>
                   <span className="form-error" data-form-error-for="exampleNumberInput">Amount is required.</span>
@@ -169,21 +175,29 @@ class Edit extends Component {
                     <span className="form-error">Yo, Product name required!!</span>
                   </label>
                 </div>
-                <strong>Upload Imagine:</strong>
-                    {this.state.isUploading &&
-                        <p>Progress: {this.state.progress}</p>
-                    }
-                    {this.state.avatarURL &&
-                        <img src={this.state.avatarURL} alt="PreviewPic" />
-                    }
-                    <ImageUploader
-                        name="avatar"
-                        storageRef={firebase.storage().ref('images')}
-                        onUploadStart={this.handleUploadStart}
-                        onUploadError={this.handleUploadError}
-                        onUploadSuccess={this.handleUploadSuccess}
-                        onProgress={this.handleProgress}
-                    />
+                <div className="small-12 columns img-uploader">
+                   <label>Product Image
+                    <div className="box-img">
+                        {this.state.isUploading &&
+                            <p>{this.state.progress}%</p>
+                        }
+                        {this.state.avatarURL &&
+                            <img src={this.state.avatarURL} alt="PreviewPic" />
+                        }
+                        <label className="button btn-file">
+                        + ADD Photo
+                            <ImageUploader
+                                name="avatar"
+                                storageRef={firebase.storage().ref('images')}
+                                onUploadStart={this.handleUploadStart}
+                                onUploadError={this.handleUploadError}
+                                onUploadSuccess={this.handleUploadSuccess}
+                                onProgress={this.handleProgress}
+                            />
+                        </label>
+                     </div>
+                    </label>
+                </div>
                 <div className="small-12 columns">
                     <label>Catagory
                       <select id="select" required onChange={ this.onNewItemChange } 
@@ -195,19 +209,6 @@ class Edit extends Component {
                             );
                           })}
                       </select>
-                    </label>
-                </div>
-                <div className="small-12 medium-6 columns">
-                    <label>Start
-                      <input type="text" placeholder="Product Name" aria-describedby="help-signup" required pattern="text" id="dp1" value=""/>
-                      <i className="fa fa-calendar-plus-o fa-input"></i>
-                    </label>
-                </div>
-                <div className="small-12 medium-6 columns">
-                    <label>Stop
-                      <input type="text" placeholder="Product Name" aria-describedby="help-signup" required pattern="text" id="dp2"/>
-                      <i className="fa fa-calendar-plus-o fa-input"></i>
-                      <span className="error-box" id="date-verified">Hey, Can't less than start</span>
                     </label>
                 </div>
                 <div className="small-12 columns admin-from-btm">

@@ -30,9 +30,10 @@ class Auctionlist extends React.Component {
       dataSnapshot.forEach( (childSnapshot) => {
         let geth = childSnapshot.val()
         geth['.key'] = childSnapshot.key
+        if(this.props.ReserveBid < geth.prize){
         historys.push(geth)
+        }
       })
-
       this.setState({
         historys: historys
       })

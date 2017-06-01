@@ -28,7 +28,43 @@ tbody tr:hover{background-color: rgba(23, 121, 186, 0.05) !important;}
     margin-top: 40vh;
 }
 
-.button{font-family: 'sukhumvit_semi_bold';color: #fff !important;padding: 10px;margin: 0 0 0 0.5rem;border-radius: 5px;position: relative;top: 0px;left: 0px;transition: all 0.1s ease-in;}
+.btn-file {
+  overflow: hidden;
+  font-size: 0.9em;
+  position: absolute !important;
+  margin: 15px!important;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+.box-img{
+    height: 250px;
+    position: relative;
+    z-index: 10;
+    margin-bottom: 15px;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 3px;
+    box-shadow: inset 0 1px 1px #e6e6e6;
+    width: 100%;
+    text-align: center;
+}
+.box-img img{
+    height: 248px;
+    position: relative;
+}
+.box-img p{position: absolute;margin-top: 110px;left: 50%;font-size: 2em !important;color: #cacaca !important;}
+
+
+.button{font-family: 'sukhumvit_semi_bold';color: #fff !important;padding: 10px;margin: 0 0 0 0.5rem;border-radius: 5px;position: relative;left: 0px;transition: all 0.1s ease-in;top: 0;}
 
 .button.hollow{border: 2px solid #1779ba;color: #1779ba !important;}
 .form-error{font-weight: 400;font-size: 1em;padding: 0 2px;color: red;}
@@ -54,7 +90,7 @@ tbody tr:hover{background-color: rgba(23, 121, 186, 0.05) !important;}
 .table-list th{background-color: #f1f1f1 !important;color: #1779ba;}
 
 /* nav */
-.title-bar{color: #1779ba;background: #fff;padding: 0.75em;position: fixed;z-index: 10000;transition: all 0.15s ease;}
+.title-bar{color: #1779ba;background: #fff;padding: 0.75em;position: fixed;top: 0;width: 100%;z-index: 10000;transition: all 0.15s ease;}
 .title-bar.nav-fix{box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);}
 .title-bar h1{font-weight: 600;font-size: 2em;line-height: 1.75em;margin: 0;}
 .title-bar .nav-right{}
@@ -63,8 +99,8 @@ tbody tr:hover{background-color: rgba(23, 121, 186, 0.05) !important;}
 .title-bar .nav-right .nav-toggle-btn{}
 .title-bar .profile-botton img{width: 45px;border-radius: 50%;border: 2.5px solid #3adb76;margin-left: -2px;}
 .title-bar .dropdown-pane{top: 0 !important;left: 0 !important;right: inherit;width: 100% !important;padding: 15vh 0.5em 5px;border: 0;cursor: pointer;z-index: 1001;}
-.title-bar .profile-circle{position: relative;display: inline-block;margin-left: 5px;}
-.title-bar .profile-dropdown {position: absolute;width: 200px;right: 0;top: 60px;padding: 5px;background: #fff;box-shadow: 0px 0 2px rgba(0, 0, 0, 0.15);}
+.title-bar .profile-circle{position: relative;display: inline-block;}
+.title-bar .profile-dropdown {position: absolute;width: 200px;right: 0;top: 55px;padding: 5px;z-index: 900;background: #fff;box-shadow: 0px 0 2px rgba(0, 0, 0, 0.15);}
 .title-bar .profile-dropdown ul{margin: 0;text-align: left;}
 .title-bar .profile-dropdown li{list-style: none;padding: 7.5px;border-bottom: 1px solid #e6e6e6;cursor: pointer;}
 .title-bar .profile-dropdown li a{font-size: 1.125em;color: #767676 !important;}
@@ -91,13 +127,13 @@ tbody tr:hover{background-color: rgba(23, 121, 186, 0.05) !important;}
 .home-cat li i{font-size: 1.5em;display: inline-block;}
 .home-cat li p{margin: 0 5px;display: inline-block;}
 .home-cat li:hover,.home-cat li.active{border-bottom: 3px solid #1779ba;top: -2px;}
-.home-cat li:hover a,.home-cat li a.active{color: #1779ba;}
+.home-cat li:hover a,.home-cat li.active a{color: #1779ba;}
 
-.post-feed{margin: 0 0 60px;position: relative;}
-.post-box{padding: 5px;font-size: 2.75vw;position: relative;z-index: 10;}
+.post-feed{margin: 0 0 60px;position: relative;z-index: 1000;}
+.post-box{padding: 5px;font-size: 2.75vw;position: relative;z-index: 1000;}
 .post-box-top{position: relative;}
 .post-box-content{color: #3b3b3b;position: relative;padding: 10px;background: rgba(202, 202, 202, 0.15);text-align: left;}
-.post-box-content h3{margin: 0;font-size: 1.33em;line-height: 0.9em;text-align: left;}
+.post-box-content h3{margin: 0;font-size: 1.33em;line-height: 0.9em;text-align: left;height: 1.8em;display: flex;align-items: center;}
 .post-box-content p{margin: 0;}
 .post-box-content span.timecount{display: inline-block;font-size: 1.875em;font-weight: 700;margin: 5px 0;padding: 6px 2px 3px;color: #fff;}
 				  span.timecount.green{background: #3adb76;}
@@ -109,7 +145,7 @@ tbody tr:hover{background-color: rgba(23, 121, 186, 0.05) !important;}
 .post-box-content span.curentcy{display: block;font-size: 0.4em;padding-right: 3px;font-weight: 400;}
 .post-box-content button {color: #3b3b3b;}
 .post-box-content button:hover {color: #3b3b3b;}
-.post-box-content button > i{position: absolute;top: -30px;right: 7px;padding: 15px 10px;background-color: #1779ba;color: #fff;font-size: 1.75em;}
+.post-box-content button > i{position: absolute;top: -25px;right: 7px;padding: 15px 10px;background-color: #1779ba;color: #fff;font-size: 1.75em;}
 .post-loader{position: absolute;bottom: 15px;left: 15px;opacity: 0.33;}
 
 .auct-l-container{margin: 30px 0 0;}
@@ -188,12 +224,20 @@ footer .footer-r{text-align: center;color: #5e5e5e;padding-top: 5px;}
 
 
 .title-bar .profile-dropdown{opacity: 0;transition: all 0.3s ease;}
-.title-bar .profile-circle:hover .profile-dropdown{opacity: 1;}
+.title-bar .profile-circle:hover .profile-dropdown{opacity: 1;z-index: 1001;}
 .profile-dropdown:hover{opacity: 1}
+
+
+.img-uploader{}
+.img-uploader input[type=file]{font-family: 'sukhumvit_normal','FontAwesome';}
+.img-uploader {}
+.img-uploader{}
+
 
 
 @media screen and (min-width: 640px) {
 
+.reveal{top:75px !important;}
 .reveal .signup{margin: 0;position: relative;top: 5px;text-align: left;}
 .title-bar .dropdown-pane{top: 72.5px !important;left: inherit !important;right: 1rem;width: 300px !important;padding: 3px 0.5em 5px;border: 1px solid #ececec;box-shadow: 0 0 5px rgba(0, 0, 0, 0.1) !important;cursor: pointer;z-index: 100001;}
 .post-box-content p.price{font-size: 2.8em;}
@@ -219,5 +263,3 @@ footer .footer-r{text-align: right;}
 @media screen and (min-width: 1280px) {
 .title-bar .dropdown-pane{right: calc((100vw - 75rem)/2);}
 }
-
-

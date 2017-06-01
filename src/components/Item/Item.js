@@ -35,23 +35,27 @@ Auction = (e) => {
     //  alert("Your bid at" + this.state.item.ReserveBid + "THB has been registered. You are currently the highest bidder." )
     //} else {
     if(this.state.newprize > this.state.item.prize){
-    if (this.state.newprize && this.state.newprize.trim().length !== 0 ) {
-    firebase.database().ref().child('items').child(this.props.match.params.itemId).child('History').push({
-    user: firebase.auth().currentUser.email,
-    prize: this.state.newprize,
-    time: this.state.time,
-    auctround: this.state.item.auctround,
-    ReservePrize:parseInt(this.state.item.prize, 10) + 10 ,
-    })
-    if(parseInt(this.state.newprize) > parseInt(this.state.item.ReserveBid)){
-    firebase.database().ref().child('items').child(this.props.match.params.itemId).update({
-    prize: parseInt(this.state.item.prize) + 10 ,
-    timetoauct: 60,
-    auctround: this.state.item.auctround + 1,
-    ReserveBid: this.state.newprize,
-    ReserveUser: firebase.auth().currentUser.email,
-  })} else { alert("Your bid has been registered. Unfortunately, an auto-bid from another user was higher than yours. Please try again... ") }
-}}}
+        if (this.state.newprize && this.state.newprize.trim().length !== 0 ){
+          firebase.database().ref().child('items').child(this.props.match.params.itemId).child('History').push({
+          user: firebase.auth().currentUser.email,
+          prize: this.state.newprize,
+          time: this.state.time,
+          auctround: this.state.item.auctround,
+          ReservePrize:parseInt(this.state.item.prize, 10) + 10 ,
+          })
+            if(parseInt(this.state.newprize) > parseInt(this.state.item.ReserveBid)){
+              firebase.database().ref().child('items').child(this.props.match.params.itemId).update({
+              prize: parseInt(this.state.item.prize) + 10 ,
+              timetoauct: 30,
+              auctround: this.state.item.auctround + 1,
+              ReserveBid: this.state.newprize,
+              ReserveUser: firebase.auth().currentUser.email, })
+
+             } 
+            else { alert("Your bid has been registered. Unfortunately, an auto-bid from another user was higher than yours. Please try again... ") }
+        }
+      }
+  }
 
  onNewPrizeChange = (e) => {
     this.setState({newprize: e.target.value});
@@ -122,7 +126,7 @@ render() {
         </div>
 
         <div className="auct-table-container">
-          <Auctionlist id={this.props.match.params.itemId} />
+          <Auctionlist id={this.props.match.params.itemId} ReserveBid={this.state.item.ReserveBid}  />
         </div>
 
 
